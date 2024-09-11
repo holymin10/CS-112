@@ -1,0 +1,181 @@
+Step 1. -------- <7:22> -----------------
+      
+double constrain(double value, double low, double high){
+	if (value > high){
+		return high;
+	}else if (value < low){
+		return low;
+	}else
+		return value;
+}
+
+int main(){
+	assert(constrain(2.0, 0.0, 1.0) == 1.0);
+	assert(constrain(1.0, 2.0, 1.0) == 2.0);
+	assert(constrain(1.0, 0.0, 2.0) == 1.0);
+	cout << "All tests passed \n";
+
+	return 0;
+}
+All tests passed
+
+Step 2. -------- <7:55> -----------------
+main.cpp:
+
+int main(){
+	assert(constrain(2.0) == 2.0);
+	assert(constrain(101.0) == 100.0);
+	assert(constrain(-1.0) == 0.0);
+	cout << "All tests passed \n";
+
+	return 0;
+}
+
+utils.cpp:
+
+double constrain(double value, double low, double high){
+	if (value > high){
+		return high;
+	}else if (value < low){
+		return low;
+	}else
+		return value;
+}
+
+utils.h:
+
+#ifndef UTILS_H_
+#define UTILS_H_
+
+double constrain(double value, double low = 0.0, double high = 100.0);
+
+
+
+#endif /* UTILS_H_ */
+All tests passed
+
+Step 3. -------- <9:07> -----------------
+
+main.cpp: 
+
+int main(){
+	assert(isPrime(11) == true);
+	assert(isPrime(4) == false);
+	cout << "All tests passed \n";
+
+	return 0;
+}
+
+utils.cpp:
+
+double constrain(double value, double low, double high){
+	if (value > high){
+		return high;
+	}else if (value < low){
+		return low;
+	}else
+		return value;
+}
+
+int isPrime(unsigned int value){
+
+	if(value <= 1)
+		return false;
+	for(int i = 2; i < value; i++)
+		if (value % i == 0)
+			return false;
+
+	return true;
+}
+
+utils.h:
+
+#ifndef UTILS_H_
+#define UTILS_H_
+
+double constrain(double value, double low = 0.0, double high = 100.0);
+int isPrime(unsigned int value);
+
+
+
+#endif /* UTILS_H_ */
+
+All tests passed
+
+Step 4. -------- <6:01> -----------------
+
+main.cpp:
+
+#include <iostream>
+#include <cassert>
+#include "utils.h"
+using namespace std;
+
+
+void findNPrimes(unsigned primes[], unsigned size){
+	int n = 1, i = 0;
+	while (n <= size) {
+		if (isPrime(n)) {
+			primes[i] = n;
+			n++;
+			i++;
+		}else {
+			n++;
+		}
+	}
+}
+
+int main(){
+
+	unsigned arr[100];
+	findNPrimes (arr, 541);
+
+	assert(arr[4] == 11);
+	assert(arr[38] == 167);
+	assert(arr[99] == 541);
+
+	assert(isPrime(11) == true);
+	assert(isPrime(4) == false);
+	cout << "All tests passed \n";
+
+	return 0;
+}
+All tests passed
+
+utils.cpp:
+
+#include <iostream>
+using namespace std;
+
+double constrain(double value, double low, double high){
+	if (value > high){
+		return high;
+	}else if (value < low){
+		return low;
+	}else
+		return value;
+}
+
+int isPrime(unsigned int value){
+
+	if(value <= 1)
+		return false;
+	for(int i = 2; i < value; i++)
+		if (value % i == 0)
+			return false;
+
+	return true;
+}
+
+utils.h:
+
+#ifndef UTILS_H_
+#define UTILS_H_
+
+double constrain(double value, double low = 0.0, double high = 100.0);
+int isPrime(unsigned int value);
+
+
+
+#endif /* UTILS_H_ */
+
